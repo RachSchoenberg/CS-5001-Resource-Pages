@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes in Python - Student Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: #d1fae5;
+            border: 2px solid #047857;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #047857;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background: #047857;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-margin-top: 20px;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #10b981;
+        }
+
+        h2 {
+            color: #047857;
+            font-size: 2em;
+        }
+
+        .resource-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #10b981;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            transform: translateX(10px);
+            border-left-color: #047857;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resource-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .resource-card a {
+            color: #047857;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .resource-card a:hover {
+            color: #065f46;
+            text-decoration: underline;
+        }
+
+        .video-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .reading-badge {
+            display: inline-block;
+            background: #51cf66;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .practice-badge {
+            display: inline-block;
+            background: #ffd43b;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            font-size: 0.9em;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        .citations {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .citations h3 {
+            color: #047857;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 10px;
+        }
+
+        .citation-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .citation-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐍 Classes in Python</h1>
+            <p class="subtitle">Your Complete Learning Resource Guide</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">📹 Videos</button>
+            <button class="tab-button" onclick="document.getElementById('reading').scrollIntoView({behavior: 'smooth'})">📚 Reading</button>
+            <button class="tab-button" onclick="document.getElementById('reference').scrollIntoView({behavior: 'smooth'})">📖 Reference Guide</button>
+            <button class="tab-button" onclick="document.getElementById('practice').scrollIntoView({behavior: 'smooth'})">💪 Practice</button>
+        </div>
+
+        <div class="section" id="videos">
+            <div class="section-header">
+                <h2>📹 Helpful Videos</h2>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=ZDa-Z5JzLYM', '_blank')">
+                    <h3>Python Classes and Objects (Spy Theme) <span class="video-badge">VIDEO</span></h3>
+                    <p>Learn Python OOP concepts with a fun spy-themed tutorial</p>
+                    <a href="https://www.youtube.com/watch?v=ZDa-Z5JzLYM" target="_blank">Watch on YouTube →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=pnWINBJ3-yA', '_blank')">
+                    <h3>Learn Classes in Python in 4 Minutes <span class="video-badge">VIDEO</span></h3>
+                    <p>Quick and concise introduction to Python classes</p>
+                    <a href="https://www.youtube.com/watch?v=pnWINBJ3-yA" target="_blank">Watch on YouTube →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=JeznW_7DlB0', '_blank')">
+                    <h3>Python Classes and Objects - OOP for Beginners <span class="video-badge">VIDEO</span></h3>
+                    <p>Comprehensive beginner-friendly guide to object-oriented programming</p>
+                    <a href="https://www.youtube.com/watch?v=JeznW_7DlB0" target="_blank">Watch on YouTube →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=Ej_02ICOIgs', '_blank')">
+                    <h3>Learn Python Classes With a Text-Based Battle <span class="video-badge">VIDEO</span></h3>
+                    <p>Build a battle game while learning OOP concepts</p>
+                    <a href="https://www.youtube.com/watch?v=Ej_02ICOIgs" target="_blank">Watch on YouTube →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=q2SGW2VgwAM', '_blank')">
+                    <h3>Python Object Oriented Programming (OOP) - For Beginners <span class="video-badge">VIDEO</span></h3>
+                    <p>Complete OOP tutorial covering all fundamental concepts</p>
+                    <a href="https://www.youtube.com/watch?v=q2SGW2VgwAM" target="_blank">Watch on YouTube →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="reading">
+            <div class="section-header">
+                <h2>📚 Informative Pages</h2>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card" onclick="window.open('https://docs.python.org/3/tutorial/classes.html', '_blank')">
+                    <h3>Official Python Documentation <span class="reading-badge">DOCS</span></h3>
+                    <p>The official Python tutorial on classes - comprehensive and authoritative</p>
+                    <a href="https://docs.python.org/3/tutorial/classes.html" target="_blank">Read Documentation →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.w3schools.com/python/python_classes.asp', '_blank')">
+                    <h3>W3Schools Python Classes <span class="reading-badge">TUTORIAL</span></h3>
+                    <p>Interactive tutorial with examples you can try yourself</p>
+                    <a href="https://www.w3schools.com/python/python_classes.asp" target="_blank">Visit W3Schools →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.geeksforgeeks.org/python-classes-and-objects/', '_blank')">
+                    <h3>GeeksforGeeks Classes Guide <span class="reading-badge">ARTICLE</span></h3>
+                    <p>Detailed explanations with multiple examples and use cases</p>
+                    <a href="https://www.geeksforgeeks.org/python-classes-and-objects/" target="_blank">Read Article →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://realpython.com/python-classes/', '_blank')">
+                    <h3>Real Python Classes Tutorial <span class="reading-badge">TUTORIAL</span></h3>
+                    <p>In-depth guide covering classes from basics to advanced topics</p>
+                    <a href="https://realpython.com/python-classes/" target="_blank">Start Learning →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="reference">
+            <div class="section-header">
+                <h2>📖 Quick Reference Guide</h2>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 5px solid #10b981;">
+                <h3 style="color: #047857; margin-bottom: 20px; font-size: 1.5em;">Class Syntax</h3>
+                <p style="color: #047857; font-style: italic; margin-bottom: 20px; font-weight: 600;">Reference material from CS 5001 with Dr. Molly Domino</p>
+                
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; font-family: 'Courier New', monospace; font-size: 0.95em;">
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Class:</strong> A blueprint for creating objects & defining structure & behavior</p>
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Attribute:</strong> Variables that define properties of an object <span style="color: #999; font-size: 0.9em;">(e.g., name, color, size)</span></p>
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Method:</strong> Functions that define behavior of an object <span style="color: #999; font-size: 0.9em;">(e.g., eat(), sleep(), run())</span></p>
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Object:</strong> Created from class using <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 4px;">ClassName()</code></p>
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Instance:</strong> A specific occurrence of an object <span style="color: #999; font-size: 0.9em;">(e.g., luna, Bella, Max - each a unique Dog)</span></p>
+                    <p style="margin-bottom: 15px;"><strong style="color: #047857;">Self Param (1st):</strong> Assigns instance of class to object & allows access & modification to attributes & methods in the class</p>
+                    <p><strong style="color: #047857;">Constructor:</strong> <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 4px;">__init__(self, ...)</code> ➜ Always 1st Method, initializes attributes, creates new object or instance</p>
+                    <p style="margin-top: 10px; margin-bottom: 0;"><strong style="color: #047857;">Instance (object classname):</strong> Used to check if an object is a specific instance of a class or superclass</p>
+                </div>
+
+                <h3 style="color: #047857; margin-bottom: 20px; margin-top: 30px; font-size: 1.5em;">Class Example</h3>
+                
+                <div style="background: #263238; color: #aed581; padding: 25px; border-radius: 8px; font-family: 'Courier New', monospace; line-height: 1.8; overflow-x: auto;">
+                    <div style="color: #82aaff; margin-bottom: 15px;">class Fruit:</div>
+                    <div style="margin-left: 20px; color: #78909c; margin-bottom: 5px;"># Constructor</div>
+                    <div style="margin-left: 20px;"><span style="color: #c792ea;">def</span> <span style="color: #82aaff;">__init__</span>(<span style="color: #f78c6c;">self</span>, name, color, taste, price, price_round=<span style="color: #f78c6c;">True</span>):</div>
+                    <div style="margin-left: 40px;"><span style="color: #f78c6c;">self</span>.name = name</div>
+                    <div style="margin-left: 40px;"><span style="color: #f78c6c;">self</span>.color = color</div>
+                    <div style="margin-left: 40px;"><span style="color: #f78c6c;">self</span>.taste = taste</div>
+                    <div style="margin-left: 40px;"><span style="color: #f78c6c;">self</span>.price = price</div>
+                    <div style="margin-left: 40px; margin-bottom: 15px;"><span style="color: #f78c6c;">self</span>.price_round = price_round</div>
+                    
+                    <div style="margin-left: 20px; color: #78909c; margin-bottom: 5px;"># Method</div>
+                    <div style="margin-left: 20px;"><span style="color: #c792ea;">def</span> <span style="color: #82aaff;">examine_fruit</span>(<span style="color: #f78c6c;">self</span>):</div>
+                    <div style="margin-left: 40px;"><span style="color: #c792ea;">return</span> <span style="color: #c3e88d;">f"This fruit is named {self.name}! Color: {self.color}, Taste: {self.taste}, Price: ${self.price if not self.price_round else round(self.price)}"</span></div>
+                    
+                    <div style="margin-top: 15px; margin-left: 20px;"><span style="color: #c792ea;">def</span> <span style="color: #82aaff;">check_cost_of_ten</span>(<span style="color: #f78c6c;">self</span>):</div>
+                    <div style="margin-left: 40px;"><span style="color: #c792ea;">return</span> <span style="color: #c3e88d;">f"Ten {self.name} will cost ${self.price * 10}"</span></div>
+                    
+                    <div style="margin-top: 15px; margin-left: 20px;"><span style="color: #c792ea;">def</span> <span style="color: #82aaff;">is_sweet</span>(<span style="color: #f78c6c;">self</span>):</div>
+                    <div style="margin-left: 40px;"><span style="color: #c792ea;">return</span> <span style="color: #c3e88d;">"sweet"</span> <span style="color: #89ddff;">in</span> <span style="color: #f78c6c;">self</span>.taste.lower()</div>
+                    
+                    <div style="color: #78909c; margin-top: 20px; margin-bottom: 5px;"># Create instances (objects)</div>
+                    <div>apple = Fruit(<span style="color: #c3e88d;">"Apple"</span>, <span style="color: #c3e88d;">"Red"</span>, <span style="color: #c3e88d;">"Sweet"</span>, <span style="color: #f78c6c;">1.99</span>)</div>
+                    <div>banana = Fruit(<span style="color: #c3e88d;">"Banana"</span>, <span style="color: #c3e88d;">"Yellow"</span>, <span style="color: #c3e88d;">"Sweet"</span>, <span style="color: #f78c6c;">0.79</span>, <span style="color: #f78c6c;">True</span>)</div>
+                    
+                    <div style="color: #78909c; margin-top: 20px; margin-bottom: 5px;"># Use methods</div>
+                    <div><span style="color: #82aaff;">print</span>(apple.examine_fruit())</div>
+                    <div><span style="color: #82aaff;">print</span>(banana.check_cost_of_ten())</div>
+                </div>
+
+                <h3 style="color: #047857; margin-bottom: 20px; margin-top: 30px; font-size: 1.5em;">Class Testing Steps</h3>
+                
+                <div style="background: white; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                    <p style="margin-bottom: 12px;"><strong>STEP 1:</strong> Create accurate "if" for test_share or related class</p>
+                    <p style="margin-bottom: 12px;"><strong>STEP 2:</strong> Import class & unittest for test file or main class</p>
+                    <p style="margin-bottom: 12px;"><strong>STEP 3:</strong> Have a "TestClass" (for each test) that imports unittest</p>
+                    <p style="margin-bottom: 12px;"><strong>STEP 4:</strong> Write methods for test case attributes, methods & behavior of class</p>
+                    <p style="margin-bottom: 12px;"><strong>STEP 5:</strong> Use unittest assertions to check actual vs expected behavior <span style="color: #999; font-size: 0.9em;">(Remember: Self does not count as an arg since method is being called by instance)</span></p>
+                    <p><strong>STEP 6:</strong> Run tests, looking for "OK"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="practice">
+            <div class="section-header">
+                <h2>💪 Practice Exercises</h2>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=jR9pQoMvcTw', '_blank')">
+                    <h3>Building With Classes Practice <span class="practice-badge">PRACTICE</span></h3>
+                    <p>Python Basics Exercises - hands-on coding practice</p>
+                    <a href="https://www.youtube.com/watch?v=jR9pQoMvcTw" target="_blank">Start Practicing →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.w3resource.com/python-exercises/class-exercises/', '_blank')">
+                    <h3>W3Resource Class Exercises <span class="practice-badge">PRACTICE</span></h3>
+                    <p>Collection of Python class exercises with solutions</p>
+                    <a href="https://www.w3resource.com/python-exercises/class-exercises/" target="_blank">View Exercises →</a>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://www.youtube.com/watch?v=fXhdGGRpzxc', '_blank')">
+                    <h3>Python Classes & Objects - Practice Problems <span class="practice-badge">PRACTICE</span></h3>
+                    <p>Solve real-world problems using classes and objects</p>
+                    <a href="https://www.youtube.com/watch?v=fXhdGGRpzxc" target="_blank">Practice Now →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="citations">
+            <h3>📚 Sources & Citations</h3>
+            <div class="citation-item">Python Software Foundation. (2025). <em>Classes - Python 3 Tutorial</em>. Python.org. <a href="https://docs.python.org/3/tutorial/classes.html" target="_blank" style="color: #047857;">https://docs.python.org/3/tutorial/classes.html</a></div>
+            <div class="citation-item">W3Schools. (2025). <em>Python Classes and Objects</em>. W3Schools.com. <a href="https://www.w3schools.com/python/python_classes.asp" target="_blank" style="color: #047857;">https://www.w3schools.com/python/python_classes.asp</a></div>
+            <div class="citation-item">GeeksforGeeks. (2025). <em>Python Classes and Objects</em>. GeeksforGeeks.org. <a href="https://www.geeksforgeeks.org/python-classes-and-objects/" target="_blank" style="color: #047857;">https://www.geeksforgeeks.org/python-classes-and-objects/</a></div>
+            <div class="citation-item">Real Python. (2025). <em>Object-Oriented Programming (OOP) in Python 3</em>. RealPython.com. <a href="https://realpython.com/python-classes/" target="_blank" style="color: #047857;">https://realpython.com/python-classes/</a></div>
+            <div class="citation-item">W3Resource. (2025). <em>Python Class Exercises</em>. W3Resource.com. <a href="https://www.w3resource.com/python-exercises/class-exercises/" target="_blank" style="color: #047857;">https://www.w3resource.com/python-exercises/class-exercises/</a></div>
+            <div class="citation-item">YouTube Educational Content: Various Python OOP tutorials and practice videos referenced throughout this resource page, including <a href="https://www.youtube.com/watch?v=f0TrMH9s-VE" target="_blank" style="color: #047857;">https://www.youtube.com/watch?v=f0TrMH9s-VE</a></div>
+            <div class="citation-item">Course materials and reference content adapted from CS 5001 with Dr. Molly Domino.</div>
+        </div>
+
+        <footer>
+            <p> ✨Tip✨: Start with the videos, read the documentation, then practice with exercises!</p>
+            <p style="margin-top: 10px;">You've got this, Friend! 😎</p>
+            <p style="margin-top: 10px;">Rachel Schoenberg 👩🏻‍💻 | October 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
